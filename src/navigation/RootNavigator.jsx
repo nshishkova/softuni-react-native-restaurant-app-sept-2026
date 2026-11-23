@@ -19,7 +19,7 @@ export default function RootNavigator() {
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" color={color} size={size} />
+            <Ionicons name="fast-food" color={color} size={size} />
           ),
         }}
       />
