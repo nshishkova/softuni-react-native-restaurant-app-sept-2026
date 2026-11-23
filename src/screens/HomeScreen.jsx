@@ -30,7 +30,7 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Categories</Text>
         {categories.map((category) => (
-          <Pressable onPress={() => navigation.navigate('Category', { categoryId: category.id })}>
+          <Pressable onPress={() => navigation.navigate('Category', { categoryId: category.id, categoryName: category.title })} style={{ marginBottom: 12 }}>
             <CategoryCard key={category.id} title={category.title} itemCount={category.itemCount} />
           </Pressable>
         ))}
