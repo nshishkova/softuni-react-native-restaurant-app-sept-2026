@@ -8,7 +8,7 @@ export default function CartNavigator() {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Cart" component={CartScreen} />
-            <Stack.Screen name="Checkout" component={CheckoutScreen)} />
+            <Stack.Screen name="Checkout" component={CheckoutScreen} />
         </Stack.Navigator>
     );
 }

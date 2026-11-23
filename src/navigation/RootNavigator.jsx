@@ -4,6 +4,7 @@ import { Text } from "react-native";
 import HomeNavigator from "./HomeNavigator";
 import CartNavigator from "./CartNavigator";
 import InfoScreen from "../screens/InfoScreen";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function RootNavigator() {
   // Create the bottom tab navigator
@@ -12,9 +13,38 @@ export default function RootNavigator() {
   //const Tabs = createNativeBottomTabNavigator();
   return (
     <Tabs.Navigator>
-      <Tabs.Screen name="HomeTab" component={HomeNavigator} options={{ headerShown: false }} />
-      <Tabs.Screen name="CartTab" component={CartNavigator} options={{ headerShown: false }} />
-      <Tabs.Screen name="Info" component={InfoScreen} />
+      <Tabs.Screen
+        name="HomeTab"
+        component={HomeNavigator}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="home" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="CartTab"
+        component={CartNavigator}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="cart" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="Info"
+        component={InfoScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons
+              name="information-circle"
+              color={color} size={size}
+            />
+          ),
+        }}
+      />
     </Tabs.Navigator>
   );
 }
