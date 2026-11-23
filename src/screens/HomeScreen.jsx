@@ -1,17 +1,17 @@
-import { Text, View, StyleSheet, FlatList, ScrollView } from "react-native";
+import { Text, View, StyleSheet, FlatList, ScrollView, Pressable } from "react-native";
 import { categories, featuredItems } from "../data/data";
 import FeaturedCard from "../components/FeaturedCard";
 import CategoryCard from "../components/CategoryCard";
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.restaurantName}>Tasty Bites</Text>
         <View style={styles.headerInfo}>
-          <Text style={styles.infoText}> 4.8 Rating</Text>
+          <Text style={styles.infoText}>⭐️ 4.8 Rating</Text>
           <Text style={styles.infoDot}>•</Text>
-          <Text style={styles.infoText}> 25-35 min</Text>
+          <Text style={styles.infoText}>🕣 25-35 min</Text>
         </View>
         <Text style={styles.tagline}>Best food in town!</Text>
       </View>
@@ -30,7 +30,9 @@ export default function HomeScreen() {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Categories</Text>
         {categories.map((category) => (
-          <CategoryCard key={category.id} title={category.title} itemCount={category.itemCount} />
+          <Pressable onPress={() => navigation.navigate('Category', { categoryId: category.id })}>
+            <CategoryCard key={category.id} title={category.title} itemCount={category.itemCount} />
+          </Pressable>
         ))}
       </View>
         

@@ -19,7 +19,7 @@ export default function FeaturedCard({ name, description, imageUrl, price }) {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#351313',
+        backgroundColor: '#fff',
         borderRadius: 12,
         overflow: 'hidden',
         shadowColor: '#000',
@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 3,
         marginBottom: 12,
+        marginRight: 12,
         width: 200,
     },
     containerHorizontal: {
