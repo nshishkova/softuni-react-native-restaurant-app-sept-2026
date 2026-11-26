@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet, Image, Pressable } from "react-native";
 
-export default function CategoryItemCard({ name, description, imageUrl, price }) {
+export default function CategoryItemCard({ name, description, imageUrl, price, onPress }) {
   return (
     <View style={[styles.container, styles.containerHorizontal]}>
     <Image
@@ -13,7 +13,7 @@ export default function CategoryItemCard({ name, description, imageUrl, price })
         <Text style={styles.price}>${price}</Text>
       </View>
       <View style={styles.rightAction}>
-        <Pressable style={styles.addButton}>
+        <Pressable style={styles.addButton} onPress={onPress}>
           <Text style={styles.addButtonText}>Add</Text>
         </Pressable>
       </View>

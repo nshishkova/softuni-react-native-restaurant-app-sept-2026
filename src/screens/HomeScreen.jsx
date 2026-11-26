@@ -1,4 +1,11 @@
-import { Text, View, StyleSheet, FlatList, ScrollView, Pressable } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  ScrollView,
+  Pressable,
+} from "react-native";
 import { categories, featuredItems } from "../data/data";
 import FeaturedCard from "../components/FeaturedCard";
 import CategoryCard from "../components/CategoryCard";
@@ -24,78 +31,87 @@ export default function HomeScreen({ navigation }) {
           renderItem={({ item }) => <FeaturedCard {...item} />}
           horizontal
           contentContainerStyle={styles.featuredList}
-        /> 
+        />
       </View>
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Categories</Text>
         {categories.map((category) => (
-          <Pressable onPress={() => navigation.navigate('Category', { categoryId: category.id, categoryName: category.title })} style={{ marginBottom: 12 }}>
-            <CategoryCard key={category.id} title={category.title} itemCount={category.itemCount} />
+          <Pressable
+          key={category.id}
+            onPress={() =>
+              navigation.navigate("Category", {
+                categoryId: category.id,
+                categoryName: category.title,
+              })
+            }
+            style={{ marginBottom: 12 }}
+          >
+            <CategoryCard
+              title={category.title}
+              itemCount={category.itemCount}
+            />
           </Pressable>
         ))}
       </View>
-        
     </ScrollView>
-
-
   );
 }
 
 const styles = StyleSheet.create({
-     container: {
-        flex: 1,
-        backgroundColor: '#f8f8f8',
-    },
-    header: {
-        backgroundColor: '#007AFF',
-        padding: 24,
-        paddingTop: 16,
-        paddingBottom: 28,
-        borderBottomLeftRadius: 24,
-        borderBottomRightRadius: 24,
-    },
-    restaurantName: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: '#fff',
-        marginBottom: 8,
-    },
-    headerInfo: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 8,
-    },
-    infoText: {
-        fontSize: 14,
-        color: '#fff',
-        opacity: 0.9,
-    },
-    infoDot: {
-        fontSize: 14,
-        color: '#fff',
-        opacity: 0.6,
-        marginHorizontal: 8,
-    },
-    tagline: {
-        fontSize: 14,
-        color: '#fff',
-        opacity: 0.8,
-    },
-    section: {
-        padding: 16,
-        paddingBottom: 8,
-    },
-    sectionTitle: {
-        fontSize: 20,
-        fontWeight: '700',
-        color: '#333',
-        marginBottom: 12,
-    },
-    featuredList: {
-        paddingRight: 16,
-    },
-    bottomPadding: {
-        height: 24,
-    },
+  container: {
+    flex: 1,
+    backgroundColor: "#f8f8f8",
+  },
+  header: {
+    backgroundColor: "#007AFF",
+    padding: 24,
+    paddingTop: 16,
+    paddingBottom: 28,
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
+  },
+  restaurantName: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#fff",
+    marginBottom: 8,
+  },
+  headerInfo: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 8,
+  },
+  infoText: {
+    fontSize: 14,
+    color: "#fff",
+    opacity: 0.9,
+  },
+  infoDot: {
+    fontSize: 14,
+    color: "#fff",
+    opacity: 0.6,
+    marginHorizontal: 8,
+  },
+  tagline: {
+    fontSize: 14,
+    color: "#fff",
+    opacity: 0.8,
+  },
+  section: {
+    padding: 16,
+    paddingBottom: 8,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#333",
+    marginBottom: 12,
+  },
+  featuredList: {
+    paddingRight: 16,
+  },
+  bottomPadding: {
+    height: 24,
+  },
 });

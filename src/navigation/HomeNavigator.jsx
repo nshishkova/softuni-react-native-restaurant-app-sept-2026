@@ -3,6 +3,7 @@ import HomeScreen from "../screens/HomeScreen";
 import CategoryScreen from "../screens/CategoryScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { Pressable } from "react-native";
+import DetailsScreen from "../screens/DetailsScreen";
 
 export default function HomeNavigator( {navigation}) {
   const Stack = createNativeStackNavigator();
@@ -31,6 +32,11 @@ export default function HomeNavigator( {navigation}) {
         name="Category"
         component={CategoryScreen}
         options={{ title: "Category" }}
+      />
+      <Stack.Screen
+        name="Details"
+        component={DetailsScreen}
+        options={{ title: "Details" }}
       />
     </Stack.Navigator>
   );
