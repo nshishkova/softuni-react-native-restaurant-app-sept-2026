@@ -1,20 +1,39 @@
 import { StyleSheet, View, ScrollView, Image, Text, Alert } from "react-native";
 import { useEffect, useState } from "react";
+//import { useCart } from "../contexts/cart-context/useCart";
 import { mealApi } from "../api";
-// import { useCart } from "../contexts/cart-context/useCart";
-// import SizeSelector from "../components/SizeSelector";
-// import ExtrasSelector from "../components/ExtrasSelector";
+import SizeSelector from "../components/SizeSelector";
+import ExtrasSelector from "../components/ExtrasSelector";
 import Button from "../components/Button";
 // import QuantityStepper from "../components/QuantityStepper";
 // import { calculatePrice, AVAILABLE_EXTRAS, calculateUnitPrice, calculateTotalPrice } from "../utils/cartUtils";
+
+export const AVAILABLE_EXTRAS = [
+    'Extra Cheese',
+    'Spicy Sauce',
+    'Bacon',
+    'Avocado',
+    'Jalapenos'
+];
+
 
 export default function DetailsScreen({
     route,
     navigation,
 }) {
-
+    
     const mealId = route.params.mealId
     const [meal, setMeal] = useState({});
+    const [size, setSize] = useState(meal.size);
+    const [extras, setExtras] = useState([]);
+    
+    const toggleExtra = (extra) => {
+        setExtras(prevExtras =>
+            prevExtras.includes(extra)
+                ? prevExtras.filter(e => e !== extra)
+                : [...prevExtras, extra]
+        );
+    };
 
     useEffect(() => {
         mealApi.getById(mealId)
@@ -41,13 +60,13 @@ export default function DetailsScreen({
 
                     <View style={styles.divider} />
 
-                    {/* <SizeSelector selectedSize={item.size} onSelect={setSize} /> */}
+                    <SizeSelector selectedSize={size} onSelect={setSize} />
 
-                    {/* <ExtrasSelector
+                    <ExtrasSelector
                         extras={AVAILABLE_EXTRAS}
-                        selectedExtras={item.extras}
+                        selectedExtras={extras}
                         onToggle={toggleExtra}
-                    /> */}
+                    /> 
 
                     <View style={styles.divider} />
 
