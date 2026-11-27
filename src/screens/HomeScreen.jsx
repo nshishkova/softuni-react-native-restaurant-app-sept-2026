@@ -31,6 +31,7 @@ export default function HomeScreen({ navigation }) {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => 
           <Link screen="Details" params={{ item }} style={{ marginRight: 12 }}>
+            <FeaturedCard {...item} />
           </Link>
           }
           horizontal
