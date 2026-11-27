@@ -1,7 +1,7 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import CategoryItemCard from "../components/CategoryItemCard";
-import { getCategoryItems } from "../data/data";
-import { useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
+import { mealApi } from "../api";
 
 export default function CategoryScreen({ route, navigation }) {
     navigation.setOptions({ 
@@ -9,11 +9,18 @@ export default function CategoryScreen({ route, navigation }) {
     });
 
   const categoryId = route.params.categoryId;
-  const categoryItems = getCategoryItems(categoryId);
+  const [meals, setMeals] = useState([]);
+  //const categoryItems = getCategoryItems(categoryId);
+  
+  useEffect(() => {
+    mealApi.getByCategoryId(categoryId)
+      .then(result => setMeals(result))
+      .catch((error) => Alert.alert("Error", error.message));
+  }, [categoryId]);
 
   return (
     <View style={styles.container}>
-      {categoryItems.map((item) => (
+      {meals.map((item) => (
         <CategoryItemCard key={item.id} {...item} 
             onPress={() => navigation.navigate("Details", { item })}
         />
