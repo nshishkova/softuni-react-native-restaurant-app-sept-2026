@@ -12,7 +12,7 @@ export default function HomeNavigator( {navigation}) {
     <Stack.Navigator
       screenOptions={{
         headerRight: () => (
-            <Pressable onPress={() => navigation.navigate("CartTab")}>
+            <Pressable onPress={() => navigation.navigate("CartMain")}>
               <Ionicons
                 name="cart"
                 size={24}
@@ -33,11 +33,11 @@ export default function HomeNavigator( {navigation}) {
         component={CategoryScreen}
         options={{ title: "Category" }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Details"
         component={DetailsScreen}
         options={{ title: "Details" }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 }

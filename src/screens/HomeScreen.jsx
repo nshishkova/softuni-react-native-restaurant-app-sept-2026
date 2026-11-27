@@ -6,6 +6,7 @@ import {
   ScrollView,
   Pressable,
 } from "react-native";
+import { Link } from "@react-navigation/native";
 import { categories, featuredItems } from "../data/data";
 import FeaturedCard from "../components/FeaturedCard";
 import CategoryCard from "../components/CategoryCard";
@@ -28,7 +29,10 @@ export default function HomeScreen({ navigation }) {
         <FlatList
           data={featuredItems}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <FeaturedCard {...item} />}
+          renderItem={({ item }) => 
+          <Link screen="Details" params={{ item }} style={{ marginRight: 12 }}>
+          </Link>
+          }
           horizontal
           contentContainerStyle={styles.featuredList}
         />
