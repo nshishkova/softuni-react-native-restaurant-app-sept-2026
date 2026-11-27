@@ -22,7 +22,7 @@ export default function CategoryScreen({ route, navigation }) {
     <View style={styles.container}>
       {meals.map((item) => (
         <CategoryItemCard key={item.id} {...item} 
-            onPress={() => navigation.navigate("Details", { item })}
+            onPress={() => navigation.navigate("Details", { mealId: item.id })}
         />
       ))}
     </View>
