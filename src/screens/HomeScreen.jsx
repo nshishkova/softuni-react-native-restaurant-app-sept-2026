@@ -1,19 +1,38 @@
-import {
-  Text,
-  View,
-  StyleSheet,
-  FlatList,
-  ScrollView,
-  Pressable,
-} from "react-native";
+import { Text, View, StyleSheet, FlatList, ScrollView, Pressable, Alert, RefreshControl } from "react-native";
+import { useState, useEffect } from "react";
+import { categoryApi } from "../api";
 import { Link } from "@react-navigation/native";
-import { categories, featuredItems } from "../data/data";
+import { featuredItems } from "../data/data";
 import FeaturedCard from "../components/FeaturedCard";
 import CategoryCard from "../components/CategoryCard";
 
 export default function HomeScreen({ navigation }) {
+  const handleRefresh = async () => {
+    setRefreshing(true);
+
+    try {
+      const data = await categoryApi.getAll();
+      setCategories(data);
+    } catch (error) {
+      Alert.alert("Error", error.message);
+    } finally {
+      setRefreshing(false);
+    }
+  };
+
+  const [categories, setCategories] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
+  useEffect(() => {
+    categoryApi.getAll()
+      .then(setCategories)
+      .catch((error) => Alert.alert("Error", error.message));
+  }, []);
+
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container}
+    refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />}
+     >
       <View style={styles.header}>
         <Text style={styles.restaurantName}>Tasty Bites</Text>
         <View style={styles.headerInfo}>
